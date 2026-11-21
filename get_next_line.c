@@ -6,7 +6,7 @@
 /*   By: ahmelamr <ahmelamr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 20:59:42 by ahmelamr          #+#    #+#             */
-/*   Updated: 2026/11/20 23:51:09 by ahmelamr         ###   ########.fr       */
+/*   Updated: 2026/11/21 03:15:58 by ahmelamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*newline_extractor(char *content)
 	char	*line;
 
 	len = 0;
-	if (!content || !content[0])
+	if (!content[0])
 		return (NULL);
 	while (content[len] && content[len] != '\n')
 		len++;
@@ -63,8 +63,6 @@ char	*update_content(char *content)
 	char	*updatedcontent;
 
 	i = 0;
-	if (!content)
-		return (NULL);
 	while (content[i] && content[i] != '\n')
 		i++;
 	if (!content[i])
