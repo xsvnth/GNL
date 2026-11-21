@@ -2,43 +2,22 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-int	main(void)
+intmain(int argc, char **argv)
 {
-	int		fd;
-	char	*line;
+intfd;
+char*line;
 
-	fd = open("big_line_no_nl.txt", O_RDONLY);
-	// fd = -1;
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (line)
-		{
-			printf("%s\n", line);
-			free(line);
-		}
-		else
-		{
-			break ;
-		}
-	}
-	/*
-	if (argc < 2)
-	{
-		printf("Usage: %s <filename>\n", argv[0]);
-		return (1);
-	}
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-	{
-		printf("Error: Cannot open file\n");
-		return (1);
-	}
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		printf("%s", line);
-		free(line);
-	}*/
-	close(fd);
-	return (0);
+fd = 0;
+if (argc > 1)
+fd = open(argv[1], O_RDONLY);
+line = get_next_line(fd);
+while (line)
+{
+printf("%s", line);
+free(line);
+line = get_next_line(fd);
+}
+if (fd > 2)
+close(fd);
+return (0);
 }
