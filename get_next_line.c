@@ -6,7 +6,7 @@
 /*   By: ahmelamr <ahmelamr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 20:59:42 by ahmelamr          #+#    #+#             */
-/*   Updated: 2026/11/18 22:17:23 by ahmelamr         ###   ########.fr       */
+/*   Updated: 2026/11/20 23:51:09 by ahmelamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,30 @@
 
 char	*get_content(int fd, char *content)
 {
-	char	buff[BUFFER_SIZE + 1];
+	char	*buff;
 	ssize_t	readedbytes;
-	char	*tmp;
 
-	readedbytes = read(fd, buff, BUFFER_SIZE);
-	if (readedbytes <= 0)
-	{
-		if (!readedbytes && (!content || content[0] == '\0'))
-		{
-			free(content);
-			return (NULL);
-		}
+	if (content && nstrchr(content))
 		return (content);
+	buff = malloc(BUFFER_SIZE + 1);
+	readedbytes = 1;
+	while (buff && readedbytes > 0 && (!content || !nstrchr(content)))
+	{
+		readedbytes = read(fd, buff, BUFFER_SIZE);
+		if (readedbytes > 0)
+		{
+			buff[readedbytes] = '\0';
+			content = ft_strjoin(content, buff);
+			if (!content)
+				readedbytes = -1;
+		}
 	}
-	buff[readedbytes] = '\0';
-	tmp = content;
-	content = ft_strjoin(content, buff);
-	free(tmp);
-	if (!ft_strchr(content, '\n'))
-		content = get_content(fd, content);
+	if (!buff || readedbytes < 0)
+	{
+		free(content);
+		content = NULL;
+	}
+	free(buff);
 	return (content);
 }
 
@@ -68,8 +72,7 @@ char	*update_content(char *content)
 		free(content);
 		return (NULL);
 	}
-	else if (content[i] == '\n')
-		i++;
+	i++;
 	updatedcontent = ft_substr(content, i, ft_strlen(content) - i);
 	free(content);
 	return (updatedcontent);
@@ -80,6 +83,8 @@ char	*get_next_line(int fd)
 	static char	*content[1024];
 	char		*line;
 
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
+		return (NULL);
 	content[fd] = get_content(fd, content[fd]);
 	if (!content[fd])
 		return (NULL);
