@@ -6,7 +6,7 @@
 /*   By: ahmelamr <ahmelamr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 22:54:57 by ahmelamr          #+#    #+#             */
-/*   Updated: 2026/11/20 03:06:32 by ahmelamr         ###   ########.fr       */
+/*   Updated: 2026/11/24 21:35:20 by ahmelamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 42000
 # endif
 
 # include <unistd.h>

@@ -7,21 +7,28 @@ int	main(void)
 	int		fd;
 	char	*line;
 
+	// 	fd = open("test.txt", O_RDONLY);
+	// close(fd);
+	// line = get_next_line(fd); /* should be NULL */
 	fd = open("big_line_no_nl.txt", O_RDONLY);
 	// fd = -1;
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (line)
-		{
-			printf("%s\n", line);
-			free(line);
-		}
-		else
-		{
-			break ;
-		}
-	}
+	// fd = open("ntest.txt", O_RDONLY);
+	// fd = open("emptytest.txt", O_RDONLY);
+	// fd = open("nontest.txt", O_RDONLY);
+	// fd = 0;
+	// while (1)
+	// {
+	// 	line = get_next_line(fd);
+	// 	if (line)
+	// 	{
+	// 		printf("%s", line);
+	// 		free(line);
+	// 	}
+	// 	else
+	// 	{
+	// 		break ;
+	// 	}
+	// }
 	/*
 	if (argc < 2)
 	{
@@ -39,6 +46,12 @@ int	main(void)
 		printf("%s", line);
 		free(line);
 	}*/
+	line = get_next_line(fd);
+	printf("%s\n", line);
+	// free(line);
+	line = get_next_line(fd);
+	printf("%s\n", line);
+	// free(line);
 	close(fd);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ahmelamr <ahmelamr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/18 22:19:09 by ahmelamr          #+#    #+#             */
-/*   Updated: 2026/11/21 03:16:18 by ahmelamr         ###   ########.fr       */
+/*   Updated: 2026/11/21 04:32:51 by ahmelamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*sub;
 	size_t	i;
 
-	i = ft_strlen(s);
-	if (start >= i)
-		len = 0;
-	else if (len > i - start)
-		len = i - start;
 	sub = malloc(len + 1);
 	if (!sub)
 		return (NULL);
